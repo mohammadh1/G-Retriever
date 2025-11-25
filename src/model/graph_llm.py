@@ -42,7 +42,8 @@ class GraphLLM(torch.nn.Module):
 
         model = AutoModelForCausalLM.from_pretrained(
             args.llm_model_path,
-            torch_dtype=torch.float16,
+            #torch_dtype=torch.float16,
+            load_in_8bit=True,
             low_cpu_mem_usage=True,
             **kwargs
         )
