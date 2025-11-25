@@ -74,6 +74,9 @@ class GraphLLM(torch.nn.Module):
         self.model = model
         print('Finish loading LLAMA!')
 
+        # make sure the model's hidden size matches gnn_in_dim
+        llm_hidden_dim = self.model.config.hidden_size
+
         self.graph_encoder = load_gnn_model[args.gnn_model_name](
             in_channels=args.gnn_in_dim,
             out_channels=args.gnn_hidden_dim,
@@ -86,7 +89,7 @@ class GraphLLM(torch.nn.Module):
         self.projector = nn.Sequential(
             nn.Linear(args.gnn_hidden_dim, 2048),
             nn.Sigmoid(),
-            nn.Linear(2048, 4096),
+            nn.Linear(2048, 2048),
         ).to(self.model.device)
 
         self.word_embedding = self.model.model.get_input_embeddings()
