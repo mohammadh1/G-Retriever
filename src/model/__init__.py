@@ -13,6 +13,6 @@ load_model = {
 # Replace the following with the model paths
 llama_model_path = {
     "qwen2_3b": "/media/external_16TB_1/mohammad_hoseinkhani/resources/qwen25-3b",
-    "llama3_8b_ins": "/media/external_16TB_1/mohammad_hoseinkhani/resources/meta-llama/Llama3-8b",
-    "llama2_7b_hf": "/media/external_16TB_1/mohammad_hoseinkhani/resources/meta-llama/Llama2-7b",
+    "llama3_8b_ins": "/media/external_16TB_1/mohammad_hoseinkhani/resources/meta-llama/llama3-8b",
+    "llama2_7b_hf": "/media/external_16TB_1/mohammad_hoseinkhani/resources/meta-llama/llama2-7b",
 }
