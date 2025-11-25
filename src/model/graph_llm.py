@@ -99,7 +99,7 @@ class GraphLLM(torch.nn.Module):
     def device(self):
         return list(self.parameters())[0].device
 
-    def maybe_autocast(self, dtype=torch.bfloat16):
+    def maybe_autocast(self, dtype=torch.float16):
         # if on cpu, don't use autocast
         # if on gpu, use autocast with dtype if provided, otherwise use torch.float16
         enable_autocast = self.device != torch.device("cpu")
@@ -161,6 +161,10 @@ class GraphLLM(torch.nn.Module):
             batch_label_input_ids[i] = [IGNORE_INDEX] * pad_length+batch_label_input_ids[i]
 
         inputs_embeds = torch.stack(batch_inputs_embeds, dim=0).to(self.model.device)
+
+        # convert to float16
+        inputs_embeds = inputs_embeds.to(torch.float16)
+
         attention_mask = torch.tensor(batch_attention_mask).to(self.model.device)
         label_input_ids = torch.tensor(batch_label_input_ids).to(self.model.device)
 
