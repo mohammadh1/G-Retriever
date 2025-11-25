@@ -22,7 +22,7 @@ class WebQSPDataset(Dataset):
         self.prompt = 'Please answer the given question.'
         self.graph = None
         self.graph_type = 'Knowledge Graph'
-        dataset = datasets.load_dataset("rmanluo/RoG-webqsp")
+        dataset = datasets.load_dataset("/media/external_16TB_1/mohammad_hoseinkhani/resources/RoG-webqsp")
         self.dataset = datasets.concatenate_datasets([dataset['train'], dataset['validation'], dataset['test']])
         self.q_embs = torch.load(f'{path}/q_embs.pt')
 
