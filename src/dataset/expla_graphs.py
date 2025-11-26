@@ -53,7 +53,7 @@ class ExplaGraphsDataset(Dataset):
         limit = 1000
         train_indices = train_indices[:limit]
         val_indices = val_indices[:200]
-        test_indices = test_indices[:200]
+        test_indices = test_indices[:50]
 
         return {'train': train_indices, 'val': val_indices, 'test': test_indices}
 
