@@ -48,6 +48,14 @@ class GraphLLM(torch.nn.Module):
             **kwargs
         )
 
+        num_llm_trainable = 0
+        num_llm_total = 0
+        for name, p in self.model.named_parameters():
+            num_llm_total += p.numel()
+            if p.requires_grad:
+                num_llm_trainable += p.numel()
+        print("LLM trainable params:", num_llm_trainable, "/", num_llm_total)
+
         if args.llm_frozen == 'True':
             print("Freezing LLAMA!")
             for name, param in model.named_parameters():

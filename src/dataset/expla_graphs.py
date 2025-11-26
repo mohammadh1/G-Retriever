@@ -49,6 +49,12 @@ class ExplaGraphsDataset(Dataset):
         with open(f'{PATH}/split/test_indices.txt', 'r') as file:
             test_indices = [int(line.strip()) for line in file]
 
+        # TEMPORARY: use only a subset to speed up training
+        limit = 1000
+        train_indices = train_indices[:limit]
+        val_indices = val_indices[:200]
+        test_indices = test_indices[:200]
+
         return {'train': train_indices, 'val': val_indices, 'test': test_indices}
 
 
